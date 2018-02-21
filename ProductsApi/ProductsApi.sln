@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{BD9CC961-7ECD-4044-9496-9EFFC88D0624}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsuDev.ProductsServerApi", "..\DsuDev.ProductsServerApi\DsuDev.ProductsServerApi.csproj", "{48FC0B8F-873E-42C9-992F-EAF4C0A90DD6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsuDev.ProductsServerApi.Tests", "DsuDev.ProductsServerApi.Tests\DsuDev.ProductsServerApi.Tests.csproj", "{DFCB003A-91DF-4FA2-BA64-9A665F80ED8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "others", "others", "{9D7FAF00-5655-439F-8CC9-4A30542BD97A}"
+	ProjectSection(SolutionItems) = preProject
+		Script.sql = Script.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
