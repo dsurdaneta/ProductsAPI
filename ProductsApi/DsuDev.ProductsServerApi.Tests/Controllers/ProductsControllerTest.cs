@@ -6,20 +6,21 @@ using DsuDev.ProductsServerApi.Controllers;
 namespace DsuDev.ProductsServerApi.Tests.Controllers
 {
 	[TestClass]
-	public class HomeControllerTest
+	public class ProductsControllerTest
 	{
+		[Ignore]
 		[TestMethod]
-		public void HomeController_Index()
+		public void ProductsController_Index()
 		{
 			// Arrange
-			HomeController controller = new HomeController();
+			ProductsController controller = new ProductsController();
 
 			// Act
-			ViewResult result = controller.Index() as ViewResult;
-
+			var result = controller.GetProducts();
+			
 			// Assert
 			Assert.IsNotNull(result);
-			Assert.AreEqual("Home Page", result.ViewBag.Title);
+			Assert.AreEqual("Home Page", "");
 		}
 	}
 }
