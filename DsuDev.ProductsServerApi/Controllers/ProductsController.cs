@@ -52,7 +52,7 @@ namespace DsuDev.ProductsServerApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != product.Id)
+            if (id != product.ProductId)
             {
                 return BadRequest();
             }
@@ -92,7 +92,7 @@ namespace DsuDev.ProductsServerApi.Controllers
             db.Products.Add(product);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
+            return CreatedAtRoute("DefaultApi", new { id = product.ProductId }, product);
         }
 
         // DELETE: api/Products/5
@@ -126,7 +126,7 @@ namespace DsuDev.ProductsServerApi.Controllers
 		[NonAction]
 		private bool ProductExists(int id)
         {
-            return db.Products.Count(e => e.Id == id) > 0;
+            return db.Products.Count(e => e.ProductId == id) > 0;
         }
 
 		// GET: api/Products/ByName/Hammer		
@@ -136,7 +136,7 @@ namespace DsuDev.ProductsServerApi.Controllers
 		[ActionName("ByName")]
 		public IHttpActionResult GetProductsByName(string name)
 		{
-			var products = db.Products.Where((p) => p.Name.Contains(name.Trim())).OrderBy(o => o.StockQuantity).ToList();
+			var products = db.Products.Where((p) => p.ProductName.Contains(name.Trim())).OrderBy(o => o.StockQuantity).ToList();
 			if (products.Count == 0)
 			{
 				return NotFound();
@@ -151,7 +151,7 @@ namespace DsuDev.ProductsServerApi.Controllers
 		[ActionName("InStockByName")]
 		public IHttpActionResult GetProductsInStockByName(string name)
 		{
-			var products = db.Products.Where((p) => p.Name.Contains(name.Trim()) && p.StockQuantity > 0).ToList();
+			var products = db.Products.Where((p) => p.ProductName.Contains(name.Trim()) && p.StockQuantity > 0).ToList();
 			if (products.Count == 0)
 			{
 				return NotFound();
