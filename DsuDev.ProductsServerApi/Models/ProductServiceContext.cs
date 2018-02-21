@@ -20,6 +20,6 @@ namespace DsuDev.ProductsServerApi.Models
 			this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 		}
 
-		public System.Data.Entity.DbSet<DsuDev.ProductsServerApi.Models.Product> Products { get; set; }
+		public DbSet<Product> Products { get; set; }
 	}
 }

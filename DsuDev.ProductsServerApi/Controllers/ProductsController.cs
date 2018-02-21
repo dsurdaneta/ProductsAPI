@@ -13,18 +13,23 @@ using DsuDev.ProductsServerApi.Models;
 
 namespace DsuDev.ProductsServerApi.Controllers
 {
-    public class ProductsController : ApiController
+	[RoutePrefix("api/Products")]
+	public class ProductsController : ApiController
     {
         private ProductServiceContext db = new ProductServiceContext();
 
-        // GET: api/Products
-        public IQueryable<Product> GetProducts()
+		// GET: api/Products
+		[HttpGet]
+		[Route("")]
+		public IQueryable<Product> GetProducts()
         {
             return db.Products;
         }
 
-        // GET: api/Products/5
-        [ResponseType(typeof(Product))]
+		// GET: api/Products/5
+		[HttpGet]
+		[Route("{id:int}")]
+		[ResponseType(typeof(Product))]
         public async Task<IHttpActionResult> GetProduct(int id)
         {
             Product product = await db.Products.FindAsync(id);
@@ -37,7 +42,9 @@ namespace DsuDev.ProductsServerApi.Controllers
         }
 
         // PUT: api/Products/5
-        [ResponseType(typeof(void))]
+		[HttpPut]
+		[Route("{id:int}")]
+		[ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutProduct(int id, Product product)
         {
             if (!ModelState.IsValid)
@@ -72,7 +79,9 @@ namespace DsuDev.ProductsServerApi.Controllers
         }
 
         // POST: api/Products
-        [ResponseType(typeof(Product))]
+		[HttpPost]
+		[Route("")]
+		[ResponseType(typeof(Product))]
         public async Task<IHttpActionResult> PostProduct(Product product)
         {
             if (!ModelState.IsValid)
@@ -87,7 +96,9 @@ namespace DsuDev.ProductsServerApi.Controllers
         }
 
         // DELETE: api/Products/5
-        [ResponseType(typeof(Product))]
+		[HttpDelete]
+		[Route("{id:int}")]
+		[ResponseType(typeof(Product))]
         public async Task<IHttpActionResult> DeleteProduct(int id)
         {
             Product product = await db.Products.FindAsync(id);
@@ -102,7 +113,8 @@ namespace DsuDev.ProductsServerApi.Controllers
             return Ok(product);
         }
 
-        protected override void Dispose(bool disposing)
+		[NonAction]
+		protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -111,11 +123,17 @@ namespace DsuDev.ProductsServerApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProductExists(int id)
+		[NonAction]
+		private bool ProductExists(int id)
         {
             return db.Products.Count(e => e.Id == id) > 0;
         }
 
+		// GET: api/Products/ByName/Hammer		
+		[HttpGet]
+		[Route("ByName/{name}")]
+		[ResponseType(typeof(Product))]
+		[ActionName("ByName")]
 		public IHttpActionResult GetProductsByName(string name)
 		{
 			var products = db.Products.Where((p) => p.Name.Contains(name.Trim())).OrderBy(o => o.StockQuantity).ToList();
@@ -126,6 +144,11 @@ namespace DsuDev.ProductsServerApi.Controllers
 			return base.Ok(products);
 		}
 
+		// GET: api/Products/InStockByName/Hammer
+		[HttpGet]
+		[Route("InStockByName/{name}")]
+		[ResponseType(typeof(Product))]
+		[ActionName("InStockByName")]
 		public IHttpActionResult GetProductsInStockByName(string name)
 		{
 			var products = db.Products.Where((p) => p.Name.Contains(name.Trim()) && p.StockQuantity > 0).ToList();
@@ -134,6 +157,15 @@ namespace DsuDev.ProductsServerApi.Controllers
 				return NotFound();
 			}
 			return base.Ok(products);
+		}
+
+		// GET: api/Products/InStock
+		[HttpGet]
+		[Route("InStock")]
+		[ActionName("InStock")]
+		public IQueryable<Product> GetProductsInStock()
+		{
+			return db.Products.Where((p) => p.StockQuantity > 0);
 		}
 	}
 }
