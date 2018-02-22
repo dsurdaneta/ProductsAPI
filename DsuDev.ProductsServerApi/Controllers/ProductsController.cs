@@ -152,7 +152,7 @@ namespace DsuDev.ProductsServerApi.Controllers
 			return base.Ok(products);
 		}
 
-		// GET: api/Products/InStockByName/Hammer
+		// GET: api/Products/InStockByName/Tomato
 		[HttpGet]
 		[Route("InStockByName/{name}")]
 		[ActionName("InStockByName")]

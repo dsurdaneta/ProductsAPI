@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace DsuDev.ProductsServerApi.Tests.Models
 {
+	/// <summary>
+	///  Mocking class
+	/// </summary>
 	class TestProductDbSet : TestDbSet<Product>
 	{
 		public override Product Find(params object[] keyValues)

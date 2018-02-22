@@ -6,6 +6,10 @@ using System.Linq;
 
 namespace DsuDev.ProductsServerApi.Tests.Models
 {
+	/// <summary>
+	/// Mocking class
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
 	public class TestDbSet<T> : DbSet<T>, IQueryable, IEnumerable<T>
 		where T : class
 	{

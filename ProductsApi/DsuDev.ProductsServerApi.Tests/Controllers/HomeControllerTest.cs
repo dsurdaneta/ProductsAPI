@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DsuDev.ProductsServerApi;
 using DsuDev.ProductsServerApi.Controllers;
 
 namespace DsuDev.ProductsServerApi.Tests.Controllers

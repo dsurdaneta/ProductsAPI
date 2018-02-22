@@ -29,19 +29,6 @@ namespace DsuDev.ProductsServerApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );	
-			/*
-			config.Routes.MapHttpRoute(
-				name: "ActionApi",
-				routeTemplate: "api/{controller}/{action}/{id}",
-				defaults: new { id = RouteParameter.Optional }
-			);
-
-			config.Routes.MapHttpRoute(
-				name: "ActionByNameApi",
-				routeTemplate: "api/{controller}/{action}/{name}",
-				defaults: new { name = RouteParameter.Optional }
-			);
-			*/
 		}
     }
 }

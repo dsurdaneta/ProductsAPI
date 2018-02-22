@@ -3,6 +3,9 @@ using DsuDev.ProductsServerApi.Models;
 
 namespace DsuDev.ProductsServerApi.Tests.Models
 {
+	/// <summary>
+	///  Mocking class
+	/// </summary>
 	public class TestStoreAppContext : IProductServiceContext
 	{
 		public TestStoreAppContext()

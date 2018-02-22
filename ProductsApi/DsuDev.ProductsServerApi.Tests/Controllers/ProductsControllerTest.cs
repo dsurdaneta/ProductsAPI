@@ -1,13 +1,10 @@
-﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DsuDev.ProductsServerApi;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DsuDev.ProductsServerApi.Controllers;
 using DsuDev.ProductsServerApi.Models;
 using System.Collections.Generic;
 using DsuDev.ProductsServerApi.Tests.Models;
 using System.Web.Http.Results;
 using System.Net;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace DsuDev.ProductsServerApi.Tests.Controllers
@@ -129,14 +126,14 @@ namespace DsuDev.ProductsServerApi.Tests.Controllers
 		public void GetProductsInStockByName_ShouldReturnCorrectProduct()
 		{
 			//Arrange
-			string name = "Yo-yo";
+			string name = "Tomato";
 			var context = GetDemoContext();
 			//Act
 			var controller = new ProductsController(context);
 			var result = controller.GetProductsInStockByName(name) as OkNegotiatedContentResult<List<Product>>;
 			//Assert
 			Assert.IsNotNull(result);
-			Assert.AreEqual(2, result.Content[0].Id);
+			Assert.AreEqual(1, result.Content[0].Id);
 			Assert.IsTrue(result.Content[0].StockQuantity > 0);
 		}
 
