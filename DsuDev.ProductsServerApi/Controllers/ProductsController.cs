@@ -38,9 +38,9 @@ namespace DsuDev.ProductsServerApi.Controllers
 		[HttpGet]
 		[Route("{id:int}")]
 		[ResponseType(typeof(Product))]
-        public async Task<IHttpActionResult> GetProduct(int id)
-        {
-            Product product = await db.Products.FindAsync(id);
+		public IHttpActionResult GetProduct(int id)
+		{
+            Product product = db.Products.Find(id);
             if (product == null)
             {
                 return NotFound();
@@ -65,7 +65,6 @@ namespace DsuDev.ProductsServerApi.Controllers
 				return BadRequest();
 			}
 
-			//db.Entry(product).State = EntityState.Modified;
 			db.MarkAsModified(product);
 
 			try
@@ -145,7 +144,7 @@ namespace DsuDev.ProductsServerApi.Controllers
 		[ActionName("ByName")]
 		public IHttpActionResult GetProductsByName(string name)
 		{
-			var products = db.Products.Where((p) => p.ProductName.Contains(name.Trim())).OrderBy(o => o.StockQuantity).ToList();
+			var products = db.Products.Where(p => p.ProductName.Contains(name.Trim())).OrderBy(o => o.StockQuantity).ToList();
 			if (products.Count == 0)
 			{
 				return NotFound();
@@ -156,11 +155,10 @@ namespace DsuDev.ProductsServerApi.Controllers
 		// GET: api/Products/InStockByName/Hammer
 		[HttpGet]
 		[Route("InStockByName/{name}")]
-		[ResponseType(typeof(Product))]
 		[ActionName("InStockByName")]
 		public IHttpActionResult GetProductsInStockByName(string name)
 		{
-			var products = db.Products.Where((p) => p.ProductName.Contains(name.Trim()) && p.StockQuantity > 0).ToList();
+			var products = db.Products.Where(p => p.ProductName.Contains(name.Trim()) && p.StockQuantity > 0).ToList();
 			if (products.Count == 0)
 			{
 				return NotFound();
@@ -171,10 +169,10 @@ namespace DsuDev.ProductsServerApi.Controllers
 		// GET: api/Products/InStock
 		[HttpGet]
 		[Route("InStock")]
-		[ActionName("InStock")]
 		public IQueryable<Product> GetProductsInStock()
 		{
-			return db.Products.Where((p) => p.StockQuantity > 0);
+			var inStockProducts = db.Products.Where(p => p.StockQuantity > 0);
+			return inStockProducts;
 		}
 	}
 }
