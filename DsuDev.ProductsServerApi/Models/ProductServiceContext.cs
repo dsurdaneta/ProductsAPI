@@ -6,8 +6,8 @@ using System.Web;
 
 namespace DsuDev.ProductsServerApi.Models
 {
-    public class ProductServiceContext : DbContext
-    {
+    public class ProductServiceContext : DbContext, IProductServiceContext
+	{
         // You can add custom code to this file. Changes will not be overwritten.
         // 
         // If you want Entity Framework to drop and regenerate your database
@@ -21,5 +21,10 @@ namespace DsuDev.ProductsServerApi.Models
 		}
 
 		public DbSet<Product> Products { get; set; }
+
+		public void MarkAsModified(Product item)
+		{
+			Entry(item).State = EntityState.Modified;
+		}
 	}
 }

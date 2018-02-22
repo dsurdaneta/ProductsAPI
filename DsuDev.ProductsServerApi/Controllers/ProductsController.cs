@@ -10,13 +10,14 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DsuDev.ProductsServerApi.Models;
+using Newtonsoft.Json;
 
 namespace DsuDev.ProductsServerApi.Controllers
 {
 	[RoutePrefix("api/Products")]
 	public class ProductsController : ApiController
     {
-        private ProductServiceContext db = new ProductServiceContext();
+        private IProductServiceContext db = new ProductServiceContext();
 
 		// GET: api/Products
 		[HttpGet]
@@ -45,73 +46,74 @@ namespace DsuDev.ProductsServerApi.Controllers
 		[HttpPut]
 		[Route("{id:int}")]
 		[ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutProduct(int id, Product product)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+		public IHttpActionResult PutProduct(int id, Product product)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
 
-            if (id != product.Id)
-            {
-                return BadRequest();
-            }
+			if (id != product.Id)
+			{
+				return BadRequest();
+			}
 
-            db.Entry(product).State = EntityState.Modified;
+			//db.Entry(product).State = EntityState.Modified;
+			db.MarkAsModified(product);
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+			try
+			{
+				db.SaveChanges();
+			}
+			catch (DbUpdateConcurrencyException)
+			{
+				if (!ProductExists(id))
+				{
+					return NotFound();
+				}
+				else
+				{
+					throw;
+				}
+			}
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+			return StatusCode(HttpStatusCode.NoContent);
+		}
 
-        // POST: api/Products
+		// POST: api/Products
 		[HttpPost]
 		[Route("")]
 		[ResponseType(typeof(Product))]
-        public async Task<IHttpActionResult> PostProduct(Product product)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+		public IHttpActionResult PostProduct(Product product)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
 
-            db.Products.Add(product);
-            await db.SaveChangesAsync();
+			db.Products.Add(product);
+			db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
-        }
+			return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
+		}
 
-        // DELETE: api/Products/5
+		// DELETE: api/Products/5
 		[HttpDelete]
 		[Route("{id:int}")]
 		[ResponseType(typeof(Product))]
-        public async Task<IHttpActionResult> DeleteProduct(int id)
-        {
-            Product product = await db.Products.FindAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+		public IHttpActionResult DeleteProduct(int id)
+		{
+			Product product = db.Products.Find(id);
+			if (product == null)
+			{
+				return NotFound();
+			}
 
-            db.Products.Remove(product);
-            await db.SaveChangesAsync();
+			db.Products.Remove(product);
+			db.SaveChanges();
 
-            return Ok(product);
-        }
+			return Ok(product);
+		}
 
 		[NonAction]
 		protected override void Dispose(bool disposing)
