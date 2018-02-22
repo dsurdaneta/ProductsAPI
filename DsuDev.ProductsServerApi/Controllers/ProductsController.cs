@@ -52,7 +52,7 @@ namespace DsuDev.ProductsServerApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != product.ProductId)
+            if (id != product.Id)
             {
                 return BadRequest();
             }
@@ -92,7 +92,7 @@ namespace DsuDev.ProductsServerApi.Controllers
             db.Products.Add(product);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = product.ProductId }, product);
+            return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
         }
 
         // DELETE: api/Products/5
@@ -126,7 +126,7 @@ namespace DsuDev.ProductsServerApi.Controllers
 		[NonAction]
 		private bool ProductExists(int id)
         {
-            return db.Products.Count(e => e.ProductId == id) > 0;
+            return db.Products.Count(e => e.Id == id) > 0;
         }
 
 		// GET: api/Products/ByName/Hammer		

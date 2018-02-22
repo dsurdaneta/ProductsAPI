@@ -8,7 +8,7 @@ namespace DsuDev.ProductsServerApi.Models
 {
 	public class Product
 	{
-		public int ProductId { get; set; }
+		public int Id { get; set; }
 		[Required]
 		public string ProductName { get; set; }
 		public string Category { get; set; }
