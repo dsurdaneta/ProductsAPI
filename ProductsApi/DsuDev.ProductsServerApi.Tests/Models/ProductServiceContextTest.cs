@@ -16,16 +16,15 @@ namespace DsuDev.ProductsServerApi.Tests.Models
 			Assert.IsNotNull(result);
 		}
 
-		[Ignore]
 		[TestMethod]
-		public void ProductServiceContext_HasProducts()
+		public void ProductServiceContext_HasNotNullProducts()
 		{
 			//Arrange
 			var context = new ProductServiceContext();
 			//Act
 			var result = context.Products;
 			//Assert
-			Assert.IsTrue(result.Local.Count > 0);
+			Assert.IsNotNull(result);
 		}
 	}
 }
