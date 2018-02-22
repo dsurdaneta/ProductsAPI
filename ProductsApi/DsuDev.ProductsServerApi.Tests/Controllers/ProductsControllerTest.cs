@@ -42,6 +42,70 @@ namespace DsuDev.ProductsServerApi.Tests.Controllers
 		}
 
 		[TestMethod]
+		public void RestockProduct_ShouldReturnStatusCode()
+		{
+			//Arrange
+			var context = new TestStoreAppContext();
+			context.Products.Add(GetDemoProduct());
+			var controller = new ProductsController(context);
+			var item = GetDemoProduct();
+			//Act
+			var result = controller.PutRestockProduct(item.Id, 2) as StatusCodeResult;
+			//Assert
+			Assert.IsNotNull(result);
+			Assert.IsInstanceOfType(result, typeof(StatusCodeResult));
+			Assert.AreEqual(HttpStatusCode.NoContent, result.StatusCode);
+		}
+
+		[TestMethod]
+		public void DestockProduct_ShouldReturnStatusCode()
+		{
+			//Arrange
+			var context = new TestStoreAppContext();
+			context.Products.Add(GetDemoProduct());
+			var controller = new ProductsController(context);
+			var item = GetDemoProduct();
+			//Act
+			var result = controller.PutDestockProduct(item.Id, 2) as StatusCodeResult;
+			//Assert
+			Assert.IsNotNull(result);
+			Assert.IsInstanceOfType(result, typeof(StatusCodeResult));
+			Assert.AreEqual(HttpStatusCode.NoContent, result.StatusCode);
+		}
+
+		[TestMethod]
+		public void DestockProduct_ShouldReturnStatusCodeWhenNoStock()
+		{
+			//Arrange
+			var context = new TestStoreAppContext();
+			var item = GetDemoNoStockProduct();
+			context.Products.Add(item);
+			var controller = new ProductsController(context);			
+			//Act
+			var result = controller.PutDestockProduct(item.Id, 2) as StatusCodeResult;
+			//Assert
+			Assert.IsNotNull(result);
+			Assert.IsInstanceOfType(result, typeof(StatusCodeResult));
+			Assert.AreEqual(HttpStatusCode.NoContent, result.StatusCode);
+		}
+
+		[TestMethod]
+		public void DestockProduct_ShouldBeOkDestockingMoreThanStockQuantity()
+		{
+			//Arrange
+			var context = new TestStoreAppContext();
+			var item = GetDemoNoStockProduct();
+			context.Products.Add(item);
+			var controller = new ProductsController(context);
+			//Act
+			var result = controller.PutDestockProduct(item.Id, item.StockQuantity + 2) as StatusCodeResult;
+			//Assert
+			Assert.IsNotNull(result);
+			Assert.IsInstanceOfType(result, typeof(StatusCodeResult));
+			Assert.AreEqual(HttpStatusCode.NoContent, result.StatusCode);
+		}
+
+		[TestMethod]
 		public void PutProduct_ShouldFail_WhenDifferentID()
 		{
 			//Arrange
@@ -60,10 +124,10 @@ namespace DsuDev.ProductsServerApi.Tests.Controllers
 			context.Products.Add(GetDemoProduct());
 			//Act
 			var controller = new ProductsController(context);
-			var result = controller.GetProduct(3) as OkNegotiatedContentResult<Product>;
+			var result = controller.GetProduct(1) as OkNegotiatedContentResult<Product>;
 			//Assert
 			Assert.IsNotNull(result);
-			Assert.AreEqual(3, result.Content.Id);
+			Assert.AreEqual(1, result.Content.Id);
 		}
 
 		[TestMethod]
@@ -84,14 +148,28 @@ namespace DsuDev.ProductsServerApi.Tests.Controllers
 		{
 			//Arrange
 			var context = new TestStoreAppContext();
+			var item = GetDemoNoStockProduct();
+			context.Products.Add(item);
+			//Act
+			var controller = new ProductsController(context);
+			var result = controller.DeleteProduct(item.Id) as OkNegotiatedContentResult<Product>;
+			//Assert
+			Assert.IsNotNull(result);
+			Assert.AreEqual(item.Id, result.Content.Id);
+		}
+
+		[TestMethod]
+		public void DeleteProduct_ShouldFailWhenThereIsStock()
+		{
+			//Arrange
+			var context = new TestStoreAppContext();
 			var item = GetDemoProduct();
 			context.Products.Add(item);
 			//Act
 			var controller = new ProductsController(context);
-			var result = controller.DeleteProduct(3) as OkNegotiatedContentResult<Product>;
+			var badresult = controller.DeleteProduct(item.Id);
 			//Assert
-			Assert.IsNotNull(result);
-			Assert.AreEqual(item.Id, result.Content.Id);
+			Assert.IsInstanceOfType(badresult, typeof(BadRequestErrorMessageResult));
 		}
 
 		[TestMethod]
@@ -152,6 +230,11 @@ namespace DsuDev.ProductsServerApi.Tests.Controllers
 
 		#region Private Methods
 		Product GetDemoProduct()
+		{
+			return new Product { Id = 1, ProductName = "Tomato Soup", Category = "Groceries", Price = 1, StockQuantity = 150 };
+		}
+
+		Product GetDemoNoStockProduct()
 		{
 			return new Product() { Id = 3, ProductName = "Hammer", Category = "Hardware", Price = 16.99M, StockQuantity = 0 };
 		}

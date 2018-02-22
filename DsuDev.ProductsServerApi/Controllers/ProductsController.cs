@@ -86,6 +86,45 @@ namespace DsuDev.ProductsServerApi.Controllers
 			return StatusCode(HttpStatusCode.NoContent);
 		}
 
+		// PUT: api/Products/5/Destock/2
+		[HttpPut]
+		[Route("{id:int}/Destock/{quantity:int}")]
+		[ResponseType(typeof(void))]
+		public IHttpActionResult PutDestockProduct(int id, int quantity)
+		{
+			Product product = db.Products.Find(id);
+			if (product == null)
+			{
+				return NotFound();
+			}
+
+			product.StockQuantity -= quantity;
+
+			if (product.StockQuantity < 0)
+			{
+				product.StockQuantity = 0;
+			}
+
+			return PutProduct(id, product);			
+		}
+
+		// PUT: api/Products/5/Restock/2
+		[HttpPut]
+		[Route("{id:int}/Restock/{quantity:int}")]
+		[ResponseType(typeof(void))]
+		public IHttpActionResult PutRestockProduct(int id, int quantity)
+		{
+			Product product = db.Products.Find(id);
+			if (product == null)
+			{
+				return NotFound();
+			}
+
+			product.StockQuantity += quantity;
+			
+			return PutProduct(id, product);			
+		}
+
 		// POST: api/Products
 		[HttpPost]
 		[Route("")]
@@ -113,6 +152,11 @@ namespace DsuDev.ProductsServerApi.Controllers
 			if (product == null)
 			{
 				return NotFound();
+			}
+
+			if(product.StockQuantity > 0)
+			{
+				return BadRequest("Product still exist in stock.");
 			}
 
 			db.Products.Remove(product);
