@@ -21,6 +21,7 @@ namespace DsuDev.ProductsServerApi.Models
 		public void MarkAsModified(Product item)
 		{
 			Entry(item).State = EntityState.Modified;
+			this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 		}
 	}
 }
