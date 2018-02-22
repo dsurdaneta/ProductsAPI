@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DsuDev.ProductsServerApi.Models
 {
-	interface IProductServiceContext : IDisposable
+	public interface IProductServiceContext : IDisposable
 	{
 		DbSet<Product> Products { get; }
 		int SaveChanges();

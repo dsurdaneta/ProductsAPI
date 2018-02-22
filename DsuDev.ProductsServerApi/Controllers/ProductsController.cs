@@ -19,6 +19,13 @@ namespace DsuDev.ProductsServerApi.Controllers
     {
         private IProductServiceContext db = new ProductServiceContext();
 
+		public ProductsController() { }
+
+		public ProductsController(IProductServiceContext context)
+		{
+			db = context;
+		}
+		
 		// GET: api/Products
 		[HttpGet]
 		[Route("")]
