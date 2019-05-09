@@ -11,11 +11,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DsuDev.ProductsServerApi.Tests</RootNamespace>
     <AssemblyName>DsuDev.ProductsServerApi.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -120,6 +121,14 @@
     <ProjectReference Include="..\..\DsuDev.ProductsServerApi\DsuDev.ProductsServerApi.csproj">
       <Project>{48FC0B8F-873E-42C9-992F-EAF4C0A90DD6}</Project>
       <Name>DsuDev.ProductsServerApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DsuDev.ProductsServerApi.Domain\DsuDev.ProductsServerApi.Domain.csproj">
+      <Project>{daf35b85-a691-41ff-ad29-4a6f337e5461}</Project>
+      <Name>DsuDev.ProductsServerApi.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DsuDev.ProductsServerApi.Services\DsuDev.ProductsServerApi.Services.csproj">
+      <Project>{39471ccf-471d-444a-890c-84a61c871308}</Project>
+      <Name>DsuDev.ProductsServerApi.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

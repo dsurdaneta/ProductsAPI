@@ -1,12 +1,12 @@
-﻿using DsuDev.ProductsServerApi.Models;
-using System.Linq;
+﻿using System.Linq;
+using DsuDev.ProductsServerApi.Domain.Entities;
 
 namespace DsuDev.ProductsServerApi.Tests.Models
 {
-	/// <summary>
-	///  Mocking class
-	/// </summary>
-	class TestProductDbSet : TestDbSet<Product>
+    /// <summary>
+    ///  Mocking class
+    /// </summary>
+    class TestProductDbSet : TestDbSet<Product>
 	{
 		public override Product Find(params object[] keyValues)
 		{

@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DsuDev.ProductsServerApi.Models;
+﻿using DsuDev.ProductsServerApi.Domain.Entities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DsuDev.ProductsServerApi.Tests.Models
 {
-	/// <summary>
-	/// Summary description for ProductTest
-	/// </summary>
-	[TestClass]
+    /// <summary>
+    /// Summary description for ProductTest
+    /// </summary>
+    [TestClass]
 	public class ProductTest
 	{
 		[TestMethod]

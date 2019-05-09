@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DsuDev.ProductsServerApi.Models;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DsuDev.ProductsServerApi.Services.Context;
 
 namespace DsuDev.ProductsServerApi.Tests.Models
 {
-	[TestClass]
+    [TestClass]
 	public class ProductServiceContextTest
 	{
 		[TestMethod]

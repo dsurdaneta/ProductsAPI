@@ -1,12 +1,13 @@
 ﻿using System.Data.Entity;
-using DsuDev.ProductsServerApi.Models;
+using DsuDev.ProductsServerApi.Domain.Entities;
+using DsuDev.ProductsServerApi.Services.Context;
 
 namespace DsuDev.ProductsServerApi.Tests.Models
 {
-	/// <summary>
-	///  Mocking class
-	/// </summary>
-	public class TestStoreAppContext : IProductServiceContext
+    /// <summary>
+    ///  Mocking class
+    /// </summary>
+    public class TestStoreAppContext : IProductServiceContext
 	{
 		public TestStoreAppContext()
 		{
