@@ -1,4 +1,4 @@
-﻿using DsuDev.ProductsServerApi.Models;
+﻿using DsuDev.ProductsServerApi.Domain.Entities;
 
 namespace DsuDev.ProductsServerApi.FluentBuilders
 {

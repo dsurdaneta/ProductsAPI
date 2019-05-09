@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using DsuDev.ProductsServerApi.Models;
-using Newtonsoft.Json;
+using DsuDev.ProductsServerApi.Domain.Entities;
+using DsuDev.ProductsServerApi.Services.Context;
 
 namespace DsuDev.ProductsServerApi.Controllers
 {
-	[RoutePrefix("api/Products")]
-	public class ProductsController : ApiController
+    [RoutePrefix("api/Products")]
+    public class ProductsController : ApiController
     {
-        private IProductServiceContext db = new ProductServiceContext();
+        private readonly IProductServiceContext db = new ProductServiceContext();
 
-		public ProductsController() { }
+        public ProductsController() { }
 
-		public ProductsController(IProductServiceContext context)
-		{
-			db = context;
-		}
+        public ProductsController(IProductServiceContext context)
+        {
+            db = context;
+        }
 		
-		// GET: api/Products
-		[HttpGet]
-		[Route("")]
-		public IQueryable<Product> GetProducts()
+        // GET: api/Products
+        [HttpGet]
+        [Route("")]
+        public IQueryable<Product> GetProducts()
         {
             return db.Products;
         }
