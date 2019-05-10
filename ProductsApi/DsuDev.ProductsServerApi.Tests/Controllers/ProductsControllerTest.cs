@@ -1,15 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DsuDev.ProductsServerApi.Controllers;
-using DsuDev.ProductsServerApi.Models;
 using System.Collections.Generic;
 using DsuDev.ProductsServerApi.Tests.Models;
 using System.Web.Http.Results;
 using System.Net;
 using System.Linq;
+using DsuDev.ProductsServerApi.Domain.Entities;
 
 namespace DsuDev.ProductsServerApi.Tests.Controllers
 {
-	[TestClass]
+    [TestClass]
 	public class ProductsControllerTest
 	{		
 		[TestMethod]
@@ -58,7 +58,7 @@ namespace DsuDev.ProductsServerApi.Tests.Controllers
 		}
 
 		[TestMethod]
-		public void DestockProduct_ShouldReturnStatusCode()
+		public void DeStockProduct_ShouldReturnStatusCode()
 		{
 			//Arrange
 			var context = new TestStoreAppContext();
@@ -74,7 +74,7 @@ namespace DsuDev.ProductsServerApi.Tests.Controllers
 		}
 
 		[TestMethod]
-		public void DestockProduct_ShouldReturnStatusCodeWhenNoStock()
+		public void DeStockProduct_ShouldReturnStatusCodeWhenNoStock()
 		{
 			//Arrange
 			var context = new TestStoreAppContext();
