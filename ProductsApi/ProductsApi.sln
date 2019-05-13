@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "others", "others", "{9D7FAF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DsuDev.ProductsServerApi.Domain", "DsuDev.ProductsServerApi.Domain\DsuDev.ProductsServerApi.Domain.csproj", "{DAF35B85-A691-41FF-AD29-4A6F337E5461}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsuDev.ProductsServerApi.Services", "DsuDev.ProductsServerApi.Services\DsuDev.ProductsServerApi.Services.csproj", "{B8FF3841-8B73-4388-827B-33DDE051B428}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{DAF35B85-A691-41FF-AD29-4A6F337E5461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAF35B85-A691-41FF-AD29-4A6F337E5461}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAF35B85-A691-41FF-AD29-4A6F337E5461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8FF3841-8B73-4388-827B-33DDE051B428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8FF3841-8B73-4388-827B-33DDE051B428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8FF3841-8B73-4388-827B-33DDE051B428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8FF3841-8B73-4388-827B-33DDE051B428}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{48FC0B8F-873E-42C9-992F-EAF4C0A90DD6} = {BD9CC961-7ECD-4044-9496-9EFFC88D0624}
 		{DFCB003A-91DF-4FA2-BA64-9A665F80ED8D} = {BD9CC961-7ECD-4044-9496-9EFFC88D0624}
 		{DAF35B85-A691-41FF-AD29-4A6F337E5461} = {BD9CC961-7ECD-4044-9496-9EFFC88D0624}
+		{B8FF3841-8B73-4388-827B-33DDE051B428} = {BD9CC961-7ECD-4044-9496-9EFFC88D0624}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6D4A2618-10CE-4AEC-9B1F-4C4204B9F849}
