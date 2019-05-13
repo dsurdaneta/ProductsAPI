@@ -126,10 +126,6 @@
       <Project>{daf35b85-a691-41ff-ad29-4a6f337e5461}</Project>
       <Name>DsuDev.ProductsServerApi.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DsuDev.ProductsServerApi.Services\DsuDev.ProductsServerApi.Services.csproj">
-      <Project>{39471ccf-471d-444a-890c-84a61c871308}</Project>
-      <Name>DsuDev.ProductsServerApi.Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
