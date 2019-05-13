@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{BD9CC961-7ECD-4044-9496-9EFFC88D0624}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsuDev.ProductsServerApi", "..\DsuDev.ProductsServerApi\DsuDev.ProductsServerApi.csproj", "{48FC0B8F-873E-42C9-992F-EAF4C0A90DD6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DAF35B85-A691-41FF-AD29-4A6F337E5461} = {DAF35B85-A691-41FF-AD29-4A6F337E5461}
+		{39471CCF-471D-444A-890C-84A61C871308} = {39471CCF-471D-444A-890C-84A61C871308}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsuDev.ProductsServerApi.Tests", "DsuDev.ProductsServerApi.Tests\DsuDev.ProductsServerApi.Tests.csproj", "{DFCB003A-91DF-4FA2-BA64-9A665F80ED8D}"
 EndProject
@@ -14,9 +18,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "others", "others", "{9D7FAF
 		Script.sql = Script.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsuDev.ProductsServerApi.Services", "DsuDev.ProductsServerApi.Services\DsuDev.ProductsServerApi.Services.csproj", "{39471CCF-471D-444A-890C-84A61C871308}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DsuDev.ProductsServerApi.Services", "DsuDev.ProductsServerApi.Services\DsuDev.ProductsServerApi.Services.csproj", "{39471CCF-471D-444A-890C-84A61C871308}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsuDev.ProductsServerApi.Domain", "DsuDev.ProductsServerApi.Domain\DsuDev.ProductsServerApi.Domain.csproj", "{DAF35B85-A691-41FF-AD29-4A6F337E5461}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DsuDev.ProductsServerApi.Domain", "DsuDev.ProductsServerApi.Domain\DsuDev.ProductsServerApi.Domain.csproj", "{DAF35B85-A691-41FF-AD29-4A6F337E5461}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
