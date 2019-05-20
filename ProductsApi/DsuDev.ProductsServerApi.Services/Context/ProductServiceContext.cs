@@ -25,5 +25,11 @@ namespace DsuDev.ProductsServerApi.Services.Context
             Entry(item).State = EntityState.Modified;
             this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
+
+        public void MarkAsModified(Category item)
+        {
+            Entry(item).State = EntityState.Modified;
+            this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+        }
     }
 }
