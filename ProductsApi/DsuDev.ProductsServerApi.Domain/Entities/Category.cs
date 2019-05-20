@@ -4,7 +4,7 @@ namespace DsuDev.ProductsServerApi.Domain.Entities
 {
     public class Category
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string CategoryName { get; set; }
 
         public List<Product> Products { get; set; }
