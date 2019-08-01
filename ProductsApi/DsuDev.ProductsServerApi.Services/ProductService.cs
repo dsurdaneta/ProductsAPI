@@ -25,7 +25,7 @@ namespace DsuDev.ProductsServerApi.Services
             return this.productServiceContext.Products.Any(product => product.Id == id);
         }
 
-        public void Insert(Product product)
+        internal int Insert(Product product)
         {
             if(product == null)
             {
@@ -33,7 +33,48 @@ namespace DsuDev.ProductsServerApi.Services
             }
 
             productServiceContext.Products.Add(product);
-			productServiceContext.SaveChanges();
+			return productServiceContext.SaveChanges();
+        }
+
+        internal Product FindProduct(int productId)
+        {
+            return productServiceContext.Products.Find(productId);
+        }
+
+        internal int Remove(Product product)
+        {
+            productServiceContext.Products.Remove(product);
+			return productServiceContext.SaveChanges();
+        }
+
+        internal int UpdateProducts(Product product)
+        {
+            productServiceContext.MarkAsModified(product);
+            return productServiceContext.SaveChanges();
+        }
+
+        internal IEnumerable<Product> GetAllProducts(bool stockOnly = false)
+        {
+            var products = productServiceContext.Products;
+
+            return stockOnly 
+                ? products.Where(p => p.StockQuantity > 0) 
+                : products;
+        }
+
+        internal IEnumerable<Product> GetProductsByName(string name, bool stockOnly = false)
+        {
+            if(string.IsNullOrWhiteSpace(name))
+            {
+                return new List<Product>();
+            }
+            var products = productServiceContext.Products
+                .Where(p => p.ProductName.Contains(name.Trim(), StringComparison.InvariantCultureIgnoreCase))
+                .OrderBy(o => o.StockQuantity);
+            
+            return stockOnly 
+                ? products.Where(p => p.StockQuantity > 0) 
+                : products;
         }
     }
 }
