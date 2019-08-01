@@ -3,11 +3,10 @@ using DsuDev.ProductsServerApi.Services.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DsuDev.ProductsServerApi.Services
 {
-    public class ProductService
+    internal class ProductService : IProductService
     {
         private readonly IProductServiceContext productServiceContext;
 
@@ -15,7 +14,7 @@ namespace DsuDev.ProductsServerApi.Services
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public ProductService(IProductServiceContext context)
+        internal ProductService(IProductServiceContext context)
         {
             this.productServiceContext = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -25,7 +24,7 @@ namespace DsuDev.ProductsServerApi.Services
             return this.productServiceContext.Products.Any(product => product.Id == id);
         }
 
-        internal int Insert(Product product)
+        public int Insert(Product product)
         {
             if(product == null)
             {
@@ -36,24 +35,24 @@ namespace DsuDev.ProductsServerApi.Services
 			return productServiceContext.SaveChanges();
         }
 
-        internal Product FindProduct(int productId)
+        public Product FindProduct(int productId)
         {
             return productServiceContext.Products.Find(productId);
         }
 
-        internal int Remove(Product product)
+        public int Remove(Product product)
         {
             productServiceContext.Products.Remove(product);
 			return productServiceContext.SaveChanges();
         }
 
-        internal int UpdateProducts(Product product)
+        public int UpdateProducts(Product product)
         {
             productServiceContext.MarkAsModified(product);
             return productServiceContext.SaveChanges();
         }
 
-        internal IEnumerable<Product> GetAllProducts(bool stockOnly = false)
+        public IEnumerable<Product> GetAllProducts(bool stockOnly = false)
         {
             var products = productServiceContext.Products;
 
@@ -62,7 +61,7 @@ namespace DsuDev.ProductsServerApi.Services
                 : products;
         }
 
-        internal IEnumerable<Product> GetProductsByName(string name, bool stockOnly = false)
+        public IEnumerable<Product> GetProductsByName(string name, bool stockOnly = false)
         {
             if(string.IsNullOrWhiteSpace(name))
             {
