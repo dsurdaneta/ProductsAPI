@@ -1,6 +1,6 @@
 ﻿using DsuDev.ProductsServerApi.Domain.Entities;
 
-namespace DsuDev.ProductsServerApi.FluentBuilders
+namespace DsuDev.ProductsServerApi.Domain.FluentBuilders
 {
     public class ProductBuilder
     {
