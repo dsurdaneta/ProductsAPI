@@ -36,6 +36,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DsuDev.ProductsServer.Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DsuDev.ProductsServer.Common.Tools", "Source\Common.Tools\DsuDev.ProductsServer.Common.Tools.csproj", "{337841BC-1238-4F39-B691-F08FF91BA30C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DsuDev.ProductsServer.API", "Source\API\DsuDev.ProductsServer.API.csproj", "{126873FB-5F29-4165-BFA4-3330C54E5202}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{337841BC-1238-4F39-B691-F08FF91BA30C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{337841BC-1238-4F39-B691-F08FF91BA30C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{337841BC-1238-4F39-B691-F08FF91BA30C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{126873FB-5F29-4165-BFA4-3330C54E5202}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{126873FB-5F29-4165-BFA4-3330C54E5202}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{126873FB-5F29-4165-BFA4-3330C54E5202}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{126873FB-5F29-4165-BFA4-3330C54E5202}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{88F69AA8-7ED6-4B03-87C0-713D19052E18} = {FF399887-6654-44A9-9456-26D84F2F62AA}
 		{574F5C40-CB6B-4010-AD00-B8B25985FF4D} = {56213375-E65C-42E7-9D8C-47F56E55A6E8}
 		{337841BC-1238-4F39-B691-F08FF91BA30C} = {40455DE5-45B9-4DD1-BAD4-8E56629E678E}
+		{126873FB-5F29-4165-BFA4-3330C54E5202} = {88E5FE70-D75E-45A2-A1B5-ED2B018F7619}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D16EB722-3453-4D69-87EE-830B588E883D}
